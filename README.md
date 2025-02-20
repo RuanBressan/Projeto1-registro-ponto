@@ -1,2 +1,2 @@
-# Projeto1-registro-ponto
-Sistema de registro de ponto por reconhecimento facial
+# Projeto1-registroponto
+Sistema de Registro de ponto por reconhecimento Facial

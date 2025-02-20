@@ -1,5 +1,7 @@
-.venv 
+.venv
 venv
 /__pycache__/
-/__pycache__
-__py_cache__
+/__pycache__ 
+__pycache__
+media
+db.sqlite3
