@@ -13,7 +13,7 @@
     </div>
 
 	<div class="col-md-6 col-lg-7"> 
-		{% if not extracao_ok %} <!-- Se nao tiver Extração ok -->
+		{% if not extracao_ok %} 
 		<!-- CAMERA -->
 		<div class="p-3 bg-warning bg-opacity-10 border border-warning rounded mb-3">
 			Centralize seu rosto antes de extrair as amostras
@@ -34,9 +34,8 @@
 		</form> 
 		<!-- FINALIZA CAMERA -->
 
-		{% else %} <!-- Se Extração ok -->
+		{% else %} 
 		
-		<!-- EXTRAÇÃO OK -->
 		<div class="p-3 bg-success bg-opacity-10 border border-success rounded mb-3">
 			Amostras coletadas com sucesso
 		</div>
@@ -54,7 +53,6 @@
 			</div>
 			{% endfor %}
 		</div>
-		<!-- FINALIZA EXTRAÇÃO -->
 
 		{% endif %}
 		
