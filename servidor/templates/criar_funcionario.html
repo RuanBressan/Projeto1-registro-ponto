@@ -1,14 +1,65 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="row align-items-center justify-content-center">
-    <form class="col-md-6 border shadow-sm p-3" 
-		method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <h2>Cadastrar Funcionário</h2>
-        {{form.errors}}
-        {{form}}
-        <button class="btn btn-outline-primary mt-3" 
-			type="submit">Salvar e continuar</button>
-    </form>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>Cadastrar Funcionário</h4>
+                </div>
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        {% if form.errors %}
+                        <div class="alert alert-danger">
+                            <ul>
+                                {% for field, errors in form.errors.items %}
+                                    {% for error in errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+
+                        {% for field in form %}
+                        <div class="mb-3">
+                            <label class="form-label">{{ field.label }}</label>
+                            
+                            {% if field.name == "cpf" %}
+                                <input type="text" name="{{ field.name }}" id="cpf" class="form-control" maxlength="14" placeholder="000.000.000-00" value="{{ field.value|default_if_none:'' }}">
+                            {% else %}
+                                {{ field }}
+                            {% endif %}
+
+                            {% if field.help_text %}
+                                <small class="form-text text-muted">{{ field.help_text }}</small>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+
+                        <div class="text-center">
+                            <button class="btn btn-primary w-100" type="submit">
+                                <i class="bi bi-save"></i> Salvar e continuar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $('#cpf').inputmask('999.999.999-99', { placeholder: "___.___.___-__" });
+    });
+</script>
+
 {% endblock %}
